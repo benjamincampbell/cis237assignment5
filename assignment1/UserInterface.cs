@@ -148,11 +148,13 @@ namespace assignment1
             Console.WriteLine();
             Console.WriteLine("What would you like to do?");
             Console.WriteLine();
-            Console.WriteLine("1. Load Wine List From CSV");
+            Console.WriteLine("1. Load Wine List From Database");
             Console.WriteLine("2. Print The Entire List Of Items");
-            Console.WriteLine("3. Search For An Item");
+            Console.WriteLine("3. Search For An Item by ID");
             Console.WriteLine("4. Add New Item To The List");
-            Console.WriteLine("5. Exit Program");
+            Console.WriteLine("5. Update Database");
+            Console.WriteLine("6. Delete Item");
+            Console.WriteLine("7. Exit");
         }
 
         //Display the Prompt

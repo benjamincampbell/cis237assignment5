@@ -12,13 +12,13 @@ namespace assignment1
     class WineItemCollection : IWineCollection
     {
         //Private Variables
-        WineItem[] wineItems;
+        FullBeverage[] beverages;
         int wineItemsLength;
 
         //Constuctor. Must pass the size of the collection.
         public WineItemCollection(int size)
         {
-            wineItems = new WineItem[size];
+            beverages = new FullBeverage[size];
             wineItemsLength = 0;
         }
 
@@ -26,7 +26,11 @@ namespace assignment1
         public void AddNewItem(string id, string description, string pack)
         {
             //Add a new WineItem to the collection. Increase the Length variable.
-            wineItems[wineItemsLength] = new WineItem(id, description, pack);
+            FullBeverage bevToAdd = new FullBeverage();
+            bevToAdd.id = id;
+            bevToAdd.name = description;
+            bevToAdd.pack = pack;
+            beverages[wineItemsLength] = bevToAdd;
             wineItemsLength++;
         }
         
@@ -42,7 +46,7 @@ namespace assignment1
             if (wineItemsLength > 0)
             {
                 //For each item in the collection
-                foreach (WineItem wineItem in wineItems)
+                foreach (Beverage wineItem in beverages)
                 {
                     //if the current item is not null.
                     if (wineItem != null)
@@ -64,13 +68,13 @@ namespace assignment1
             string returnString = null;
 
             //For each WineItem in wineItems
-            foreach (WineItem wineItem in wineItems)
+            foreach (FullBeverage wineItem in beverages)
             {
                 //If the wineItem is not null
                 if (wineItem != null)
                 {
                     //if the wineItem Id is the same as the search id
-                    if (wineItem.Id == id)
+                    if (wineItem.id == id)
                     {
                         //Set the return string to the result of the wineItem's ToString method
                         returnString = wineItem.ToString();

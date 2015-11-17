@@ -24,17 +24,14 @@ namespace assignment1
             //Set a constant for the size of the collection
             const int wineItemCollectionSize = 4000;
 
-            //Set a constant for the path to the CSV File
-            const string pathToCSVFile = "../../../datafiles/winelist.csv";
-
             //Create an instance of the UserInterface class
             UserInterface userInterface = new UserInterface();
 
             //Create an instance of the WineItemCollection class
             IWineCollection wineItemCollection = new WineItemCollection(wineItemCollectionSize);
 
-            //Create an instance of the CSVProcessor class
-            CSVProcessor csvProcessor = new CSVProcessor();
+            //Get access to the collection of tables
+            BeverageBCampbellEntities beverageEntities = new BeverageBCampbellEntities();
 
             //Display the Welcome Message to the user
             userInterface.DisplayWelcomeGreeting();
@@ -43,13 +40,28 @@ namespace assignment1
             //This is the 'primer' run of displaying and getting.
             int choice = userInterface.DisplayMenuAndGetResponse();
 
-            while (choice != 5)
+            while (choice != 7)
             {
                 switch (choice)
                 {
                     case 1:
                         //Load the CSV File
-                        bool success = csvProcessor.ImportCSV(wineItemCollection, pathToCSVFile);
+                        //bool success = csvProcessor.ImportCSV(wineItemCollection, pathToCSVFile);
+                        bool success;
+
+                        try
+                        {
+                            foreach (Beverage bev in beverageEntities.Beverages)
+                            {
+                                wineItemCollection.AddNewItem(bev.id, bev.name, bev.pack);
+                            }
+                            success = true;
+                        }
+                        catch
+                        {
+                            success = false;
+                        }
+
                         if (success)
                         {
                             //Display Success Message
@@ -93,6 +105,7 @@ namespace assignment1
 
                     case 4:
                         //Add A New Item To The List
+                        //ID Description Pack
                         string[] newItemInformation = userInterface.GetNewItemInformation();
                         if (wineItemCollection.FindById(newItemInformation[0]) == null)
                         {
@@ -103,6 +116,26 @@ namespace assignment1
                         {
                             userInterface.DisplayItemAlreadyExistsError();
                         }
+                        break;
+
+                    case 5:
+                        //Update an existing item
+                        searchQuery = userInterface.GetSearchQuery();
+                        itemInformation = wineItemCollection.FindById(searchQuery);
+                        if (itemInformation != null)
+                        {
+                            userInterface.DisplayItemFound(itemInformation);
+                        }
+                        else
+                        {
+                            userInterface.DisplayItemFoundError();
+                        }
+
+
+                        break;
+
+                    case 6:
+                        //Delete an existing item
                         break;
                 }
 
