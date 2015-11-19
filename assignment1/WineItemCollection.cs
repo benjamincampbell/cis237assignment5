@@ -85,5 +85,53 @@ namespace assignment1
             return returnString;
         }
 
+        public void Overwrite(string query, string id, string description, string pack)
+        {
+            FullBeverage replacement = new FullBeverage();
+            replacement.id = id;
+            replacement.name = description;
+            replacement.pack = pack;
+
+            int i = 0;
+            bool found = false;
+
+            while (!found)
+            {
+                if (beverages[i].id == query)
+                {
+                    found = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            beverages[i] = replacement;
+        }
+
+        public void Delete(string query)
+        {
+            int i = 0;
+            bool found = false;
+
+            while (!found)
+            {
+                if (beverages[i].id == query)
+                {
+                    found = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            for (int k = i; k < wineItemsLength; k++)
+            {
+                beverages[k] = beverages[k + 1];
+            }
+        }
+
     }
 }

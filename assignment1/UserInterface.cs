@@ -11,7 +11,7 @@ namespace assignment1
 {
     class UserInterface
     {
-        const int maxMenuChoice = 5;
+        const int maxMenuChoice = 7;
         //---------------------------------------------------
         //Public Methods
         //---------------------------------------------------
@@ -84,6 +84,12 @@ namespace assignment1
             Console.WriteLine("Wine List Has Been Imported Successfully");
         }
 
+        public void DisplayReplacementSuccess()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Wine List Item updated successfully");
+        }
+
         //Display Import Error
         public void DisplayImportError()
         {
@@ -152,7 +158,7 @@ namespace assignment1
             Console.WriteLine("2. Print The Entire List Of Items");
             Console.WriteLine("3. Search For An Item by ID");
             Console.WriteLine("4. Add New Item To The List");
-            Console.WriteLine("5. Update Database");
+            Console.WriteLine("5. Update Existing Item");
             Console.WriteLine("6. Delete Item");
             Console.WriteLine("7. Exit");
         }

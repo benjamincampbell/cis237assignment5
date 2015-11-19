@@ -13,5 +13,7 @@ namespace assignment1
         string[] GetPrintStringsForAllItems();
 
         string FindById(string id);
+        void Overwrite(string query, string id, string description, string pack);
+        void Delete(string query);
     }
 }

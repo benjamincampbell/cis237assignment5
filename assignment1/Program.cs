@@ -125,6 +125,8 @@ namespace assignment1
                         if (itemInformation != null)
                         {
                             userInterface.DisplayItemFound(itemInformation);
+                            string[] replaceItemInformation = userInterface.GetNewItemInformation();
+                            wineItemCollection.Overwrite(searchQuery, replaceItemInformation[0], replaceItemInformation[1], replaceItemInformation[2]);
                         }
                         else
                         {
@@ -136,6 +138,8 @@ namespace assignment1
 
                     case 6:
                         //Delete an existing item
+                        searchQuery = userInterface.GetSearchQuery();
+                        wineItemCollection.Delete(searchQuery);
                         break;
                 }
 
