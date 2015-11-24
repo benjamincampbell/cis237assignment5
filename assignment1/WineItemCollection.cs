@@ -86,7 +86,8 @@ namespace assignment1
         }
 
         public void Overwrite(string query, string id, string description, string pack)
-        {
+        { //Method to overwrite an item at a certain ID
+            //Fill out the information for the new item
             FullBeverage replacement = new FullBeverage();
             replacement.id = id;
             replacement.name = description;
@@ -96,7 +97,7 @@ namespace assignment1
             bool found = false;
 
             while (!found)
-            {
+            {//This method just finds the index of the beverages array that the item to replace is at
                 if (beverages[i].id == query)
                 {
                     found = true;
@@ -107,16 +108,17 @@ namespace assignment1
                 }
             }
 
+            //And finally we actually replace the item
             beverages[i] = replacement;
         }
 
         public void Delete(string query)
-        {
+        {//Method to delete an item at a certain index
             int i = 0;
             bool found = false;
 
             while (!found)
-            {
+            {//This just finds the index the item to delete is at.
                 if (beverages[i].id == query)
                 {
                     found = true;
@@ -128,7 +130,8 @@ namespace assignment1
             }
 
             for (int k = i; k < wineItemsLength; k++)
-            {
+            {//This loop starts at the item we are deleting, and replaces each index with the one that comes after it.
+                //So 5 gets replaced by 6, 6 by 7, and so on, if we were deleting 5, leaving 1 2 3 4 6 7
                 beverages[k] = beverages[k + 1];
             }
         }
